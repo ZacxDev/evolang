@@ -1,0 +1,70 @@
+model User {
+    userId: Int
+    name: String
+    email: String
+    lists: [TodoList] @linkedBy(creator)
+    adminOf: [TodoList] @references(TodoList.admins)
+}
+
+model TodoList {
+    listId: Int
+    name: String
+    creator: User @references(User.userId)
+    admins: [User] @references(User.adminOf)
+    items: [TodoItem] @linkedBy(listId)
+}
+
+model TodoItem {
+    itemId: Int
+    description: String
+    status: Status
+    listId: Int @references(TodoList.listId)
+    lastEditedBy: User @references(User.userId)
+    
+    events {
+        onStatusChange: Event<OldStatus, NewStatus> {
+            <sandbox lang="go">
+                if newStatus == Status.Completed {
+                    // Go code to send an email
+                    email.Send("user@example.com", "TODO Item Completed", "Your TODO item is now completed.")
+                }
+            </sandbox>
+        }
+    }
+}
+
+enum Status {
+    Pending
+    InProgress
+    Completed
+}
+
+accessControl {
+    allow User.edit(TodoList, TodoItem) if user == creator || user in admins
+}
+
+server MyServer {
+  endpoint "/todoList" {
+      body: TodoList
+      authenticate: User
+      return TodoList.create(body)
+  }
+
+  endpoint "/todoList/{listId}/addItem" {
+      body: TodoItem
+      authenticate: User
+      checkAccess: User.canEdit(listId)
+      return TodoList.addItem(listId, body)
+  }
+
+  endpoint "/todoList/{listId}/addAdmin/{userId}" {
+      authenticate: User
+      checkAccess: User.isCreator(listId)
+      return TodoList.addAdmin(listId, userId)
+  }
+}
+
+main {
+    print("Starting server...");
+    MyServer.Listen(8080);
+}
