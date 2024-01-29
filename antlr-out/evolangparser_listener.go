@@ -38,6 +38,9 @@ type EvoLangParserListener interface {
 	// EnterFunctionBody is called when entering the functionBody production.
 	EnterFunctionBody(c *FunctionBodyContext)
 
+	// EnterAssignmentStatement is called when entering the assignmentStatement production.
+	EnterAssignmentStatement(c *AssignmentStatementContext)
+
 	// EnterConditionalStatement is called when entering the conditionalStatement production.
 	EnterConditionalStatement(c *ConditionalStatementContext)
 
@@ -68,20 +71,17 @@ type EvoLangParserListener interface {
 	// EnterMutationStatement is called when entering the mutationStatement production.
 	EnterMutationStatement(c *MutationStatementContext)
 
-	// EnterMutationDetails is called when entering the mutationDetails production.
-	EnterMutationDetails(c *MutationDetailsContext)
+	// EnterMutationParameters is called when entering the mutationParameters production.
+	EnterMutationParameters(c *MutationParametersContext)
 
-	// EnterMutationRulesApplication is called when entering the mutationRulesApplication production.
-	EnterMutationRulesApplication(c *MutationRulesApplicationContext)
+	// EnterMutationInnerBlock is called when entering the mutationInnerBlock production.
+	EnterMutationInnerBlock(c *MutationInnerBlockContext)
 
-	// EnterOrExpression is called when entering the orExpression production.
-	EnterOrExpression(c *OrExpressionContext)
+	// EnterMiddlewareBlock is called when entering the middlewareBlock production.
+	EnterMiddlewareBlock(c *MiddlewareBlockContext)
 
-	// EnterAndExpression is called when entering the andExpression production.
-	EnterAndExpression(c *AndExpressionContext)
-
-	// EnterMutationRulesApplicationExpressionPrimary is called when entering the mutationRulesApplicationExpressionPrimary production.
-	EnterMutationRulesApplicationExpressionPrimary(c *MutationRulesApplicationExpressionPrimaryContext)
+	// EnterFunctionBlock is called when entering the functionBlock production.
+	EnterFunctionBlock(c *FunctionBlockContext)
 
 	// EnterInputDef is called when entering the inputDef production.
 	EnterInputDef(c *InputDefContext)
@@ -131,6 +131,9 @@ type EvoLangParserListener interface {
 	// EnterEventType is called when entering the eventType production.
 	EnterEventType(c *EventTypeContext)
 
+	// EnterFunctionCallExpr is called when entering the FunctionCallExpr production.
+	EnterFunctionCallExpr(c *FunctionCallExprContext)
+
 	// EnterMulDivExpr is called when entering the MulDivExpr production.
 	EnterMulDivExpr(c *MulDivExprContext)
 
@@ -146,20 +149,41 @@ type EvoLangParserListener interface {
 	// EnterIntLiteral is called when entering the IntLiteral production.
 	EnterIntLiteral(c *IntLiteralContext)
 
-	// EnterFunctionCall is called when entering the FunctionCall production.
-	EnterFunctionCall(c *FunctionCallContext)
-
 	// EnterRelationalExpr is called when entering the RelationalExpr production.
 	EnterRelationalExpr(c *RelationalExprContext)
 
 	// EnterParenExpr is called when entering the ParenExpr production.
 	EnterParenExpr(c *ParenExprContext)
 
+	// EnterPropertyAccessExpr is called when entering the PropertyAccessExpr production.
+	EnterPropertyAccessExpr(c *PropertyAccessExprContext)
+
 	// EnterAddSubExpr is called when entering the AddSubExpr production.
 	EnterAddSubExpr(c *AddSubExprContext)
 
 	// EnterLogicalExpr is called when entering the LogicalExpr production.
 	EnterLogicalExpr(c *LogicalExprContext)
+
+	// EnterMethodCallExpr is called when entering the MethodCallExpr production.
+	EnterMethodCallExpr(c *MethodCallExprContext)
+
+	// EnterMethodCallExpression is called when entering the methodCallExpression production.
+	EnterMethodCallExpression(c *MethodCallExpressionContext)
+
+	// EnterSimpleIdExpr is called when entering the SimpleIdExpr production.
+	EnterSimpleIdExpr(c *SimpleIdExprContext)
+
+	// EnterPrimaryFunctionCallExpr is called when entering the PrimaryFunctionCallExpr production.
+	EnterPrimaryFunctionCallExpr(c *PrimaryFunctionCallExprContext)
+
+	// EnterPrimaryPropertyAccessExpr is called when entering the PrimaryPropertyAccessExpr production.
+	EnterPrimaryPropertyAccessExpr(c *PrimaryPropertyAccessExprContext)
+
+	// EnterPropertyAccess is called when entering the propertyAccess production.
+	EnterPropertyAccess(c *PropertyAccessContext)
+
+	// EnterFunctionCall is called when entering the functionCall production.
+	EnterFunctionCall(c *FunctionCallContext)
 
 	// EnterExprList is called when entering the exprList production.
 	EnterExprList(c *ExprListContext)
@@ -178,6 +202,24 @@ type EvoLangParserListener interface {
 
 	// EnterServerStatement is called when entering the serverStatement production.
 	EnterServerStatement(c *ServerStatementContext)
+
+	// EnterSandboxBlock is called when entering the sandboxBlock production.
+	EnterSandboxBlock(c *SandboxBlockContext)
+
+	// EnterSandboxAttributes is called when entering the sandboxAttributes production.
+	EnterSandboxAttributes(c *SandboxAttributesContext)
+
+	// EnterSandboxAttribute is called when entering the sandboxAttribute production.
+	EnterSandboxAttribute(c *SandboxAttributeContext)
+
+	// EnterSandboxLangAttribute is called when entering the sandboxLangAttribute production.
+	EnterSandboxLangAttribute(c *SandboxLangAttributeContext)
+
+	// EnterSandboxDefineAttribute is called when entering the sandboxDefineAttribute production.
+	EnterSandboxDefineAttribute(c *SandboxDefineAttributeContext)
+
+	// EnterSandboxDefineContent is called when entering the sandboxDefineContent production.
+	EnterSandboxDefineContent(c *SandboxDefineContentContext)
 
 	// ExitProg is called when exiting the prog production.
 	ExitProg(c *ProgContext)
@@ -209,6 +251,9 @@ type EvoLangParserListener interface {
 	// ExitFunctionBody is called when exiting the functionBody production.
 	ExitFunctionBody(c *FunctionBodyContext)
 
+	// ExitAssignmentStatement is called when exiting the assignmentStatement production.
+	ExitAssignmentStatement(c *AssignmentStatementContext)
+
 	// ExitConditionalStatement is called when exiting the conditionalStatement production.
 	ExitConditionalStatement(c *ConditionalStatementContext)
 
@@ -239,20 +284,17 @@ type EvoLangParserListener interface {
 	// ExitMutationStatement is called when exiting the mutationStatement production.
 	ExitMutationStatement(c *MutationStatementContext)
 
-	// ExitMutationDetails is called when exiting the mutationDetails production.
-	ExitMutationDetails(c *MutationDetailsContext)
+	// ExitMutationParameters is called when exiting the mutationParameters production.
+	ExitMutationParameters(c *MutationParametersContext)
 
-	// ExitMutationRulesApplication is called when exiting the mutationRulesApplication production.
-	ExitMutationRulesApplication(c *MutationRulesApplicationContext)
+	// ExitMutationInnerBlock is called when exiting the mutationInnerBlock production.
+	ExitMutationInnerBlock(c *MutationInnerBlockContext)
 
-	// ExitOrExpression is called when exiting the orExpression production.
-	ExitOrExpression(c *OrExpressionContext)
+	// ExitMiddlewareBlock is called when exiting the middlewareBlock production.
+	ExitMiddlewareBlock(c *MiddlewareBlockContext)
 
-	// ExitAndExpression is called when exiting the andExpression production.
-	ExitAndExpression(c *AndExpressionContext)
-
-	// ExitMutationRulesApplicationExpressionPrimary is called when exiting the mutationRulesApplicationExpressionPrimary production.
-	ExitMutationRulesApplicationExpressionPrimary(c *MutationRulesApplicationExpressionPrimaryContext)
+	// ExitFunctionBlock is called when exiting the functionBlock production.
+	ExitFunctionBlock(c *FunctionBlockContext)
 
 	// ExitInputDef is called when exiting the inputDef production.
 	ExitInputDef(c *InputDefContext)
@@ -302,6 +344,9 @@ type EvoLangParserListener interface {
 	// ExitEventType is called when exiting the eventType production.
 	ExitEventType(c *EventTypeContext)
 
+	// ExitFunctionCallExpr is called when exiting the FunctionCallExpr production.
+	ExitFunctionCallExpr(c *FunctionCallExprContext)
+
 	// ExitMulDivExpr is called when exiting the MulDivExpr production.
 	ExitMulDivExpr(c *MulDivExprContext)
 
@@ -317,20 +362,41 @@ type EvoLangParserListener interface {
 	// ExitIntLiteral is called when exiting the IntLiteral production.
 	ExitIntLiteral(c *IntLiteralContext)
 
-	// ExitFunctionCall is called when exiting the FunctionCall production.
-	ExitFunctionCall(c *FunctionCallContext)
-
 	// ExitRelationalExpr is called when exiting the RelationalExpr production.
 	ExitRelationalExpr(c *RelationalExprContext)
 
 	// ExitParenExpr is called when exiting the ParenExpr production.
 	ExitParenExpr(c *ParenExprContext)
 
+	// ExitPropertyAccessExpr is called when exiting the PropertyAccessExpr production.
+	ExitPropertyAccessExpr(c *PropertyAccessExprContext)
+
 	// ExitAddSubExpr is called when exiting the AddSubExpr production.
 	ExitAddSubExpr(c *AddSubExprContext)
 
 	// ExitLogicalExpr is called when exiting the LogicalExpr production.
 	ExitLogicalExpr(c *LogicalExprContext)
+
+	// ExitMethodCallExpr is called when exiting the MethodCallExpr production.
+	ExitMethodCallExpr(c *MethodCallExprContext)
+
+	// ExitMethodCallExpression is called when exiting the methodCallExpression production.
+	ExitMethodCallExpression(c *MethodCallExpressionContext)
+
+	// ExitSimpleIdExpr is called when exiting the SimpleIdExpr production.
+	ExitSimpleIdExpr(c *SimpleIdExprContext)
+
+	// ExitPrimaryFunctionCallExpr is called when exiting the PrimaryFunctionCallExpr production.
+	ExitPrimaryFunctionCallExpr(c *PrimaryFunctionCallExprContext)
+
+	// ExitPrimaryPropertyAccessExpr is called when exiting the PrimaryPropertyAccessExpr production.
+	ExitPrimaryPropertyAccessExpr(c *PrimaryPropertyAccessExprContext)
+
+	// ExitPropertyAccess is called when exiting the propertyAccess production.
+	ExitPropertyAccess(c *PropertyAccessContext)
+
+	// ExitFunctionCall is called when exiting the functionCall production.
+	ExitFunctionCall(c *FunctionCallContext)
 
 	// ExitExprList is called when exiting the exprList production.
 	ExitExprList(c *ExprListContext)
@@ -349,4 +415,22 @@ type EvoLangParserListener interface {
 
 	// ExitServerStatement is called when exiting the serverStatement production.
 	ExitServerStatement(c *ServerStatementContext)
+
+	// ExitSandboxBlock is called when exiting the sandboxBlock production.
+	ExitSandboxBlock(c *SandboxBlockContext)
+
+	// ExitSandboxAttributes is called when exiting the sandboxAttributes production.
+	ExitSandboxAttributes(c *SandboxAttributesContext)
+
+	// ExitSandboxAttribute is called when exiting the sandboxAttribute production.
+	ExitSandboxAttribute(c *SandboxAttributeContext)
+
+	// ExitSandboxLangAttribute is called when exiting the sandboxLangAttribute production.
+	ExitSandboxLangAttribute(c *SandboxLangAttributeContext)
+
+	// ExitSandboxDefineAttribute is called when exiting the sandboxDefineAttribute production.
+	ExitSandboxDefineAttribute(c *SandboxDefineAttributeContext)
+
+	// ExitSandboxDefineContent is called when exiting the sandboxDefineContent production.
+	ExitSandboxDefineContent(c *SandboxDefineContentContext)
 }

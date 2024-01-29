@@ -192,7 +192,7 @@ func (v *EvoLangVisitor) VisitParenExpr(ctx *parser.ParenExprContext) interface{
 }
 
 func (v *EvoLangVisitor) VisitFunctionCall(ctx *parser.FunctionCallContext) interface{} {
-	functionName := ctx.GetFunctionId().GetText()
+	functionName := ctx.ID().GetText()
 
 	// Perform a type assertion on ctx.ExprList()
 	exprListCtx := ctx.ExprList().(*parser.ExprListContext)

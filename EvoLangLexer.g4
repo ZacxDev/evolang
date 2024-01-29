@@ -22,9 +22,8 @@ RULE_DEF: 'rule' ;
 MUTATION_DEF: 'mutation' ;
 INPUT_DEF: 'input' ;
 
-KEY_DEF: '@key' ;
 OPERATION_FUNCTION_DEF: 'Function' ;
-OPERATION_RULES_DEF: 'Rules' ;
+OPERATION_MIDDLEWARE_DEF: 'Middleware' ;
 OPERATION_INPUT_DEF: 'Input' ;
 
 OP_MUL: '*' ;
@@ -40,6 +39,10 @@ OP_LTEQ: '<=' ;
 OP_AND: '&&' ;
 OP_OR: '||' ;
 OP_IN: 'in' ;
+OP_ASSIGN: '=' ;
+
+DEFINE_DEF: 'define' ;
+LANG_DEF: 'lang' ;
 
 // Basic Lexer Rules
 ID: [a-zA-Z_][a-zA-Z0-9_]* ;
@@ -64,7 +67,7 @@ AT: '@' ;
 PIPE: '|' ;
 
 // Define tokens for sandbox delimiters
-OPEN_SANDBOX_MODE: '[sandbox lang="go"]' -> pushMode(SANDBOX_MODE);
+OPEN_SANDBOX_MODE: '[sandbox' -> pushMode(SANDBOX_MODE);
 CLOSE_SANDBOX_MODE: '[/sandbox]' -> popMode;
 SANDBOX: OPEN_SANDBOX_MODE SANDBOX_CONTENT CLOSE_SANDBOX_MODE ; // The complete sandbox block
 

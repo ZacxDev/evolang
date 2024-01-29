@@ -81,6 +81,12 @@ func (s *BaseEvoLangParserListener) EnterFunctionBody(ctx *FunctionBodyContext) 
 // ExitFunctionBody is called when production functionBody is exited.
 func (s *BaseEvoLangParserListener) ExitFunctionBody(ctx *FunctionBodyContext) {}
 
+// EnterAssignmentStatement is called when production assignmentStatement is entered.
+func (s *BaseEvoLangParserListener) EnterAssignmentStatement(ctx *AssignmentStatementContext) {}
+
+// ExitAssignmentStatement is called when production assignmentStatement is exited.
+func (s *BaseEvoLangParserListener) ExitAssignmentStatement(ctx *AssignmentStatementContext) {}
+
 // EnterConditionalStatement is called when production conditionalStatement is entered.
 func (s *BaseEvoLangParserListener) EnterConditionalStatement(ctx *ConditionalStatementContext) {}
 
@@ -143,39 +149,29 @@ func (s *BaseEvoLangParserListener) EnterMutationStatement(ctx *MutationStatemen
 // ExitMutationStatement is called when production mutationStatement is exited.
 func (s *BaseEvoLangParserListener) ExitMutationStatement(ctx *MutationStatementContext) {}
 
-// EnterMutationDetails is called when production mutationDetails is entered.
-func (s *BaseEvoLangParserListener) EnterMutationDetails(ctx *MutationDetailsContext) {}
+// EnterMutationParameters is called when production mutationParameters is entered.
+func (s *BaseEvoLangParserListener) EnterMutationParameters(ctx *MutationParametersContext) {}
 
-// ExitMutationDetails is called when production mutationDetails is exited.
-func (s *BaseEvoLangParserListener) ExitMutationDetails(ctx *MutationDetailsContext) {}
+// ExitMutationParameters is called when production mutationParameters is exited.
+func (s *BaseEvoLangParserListener) ExitMutationParameters(ctx *MutationParametersContext) {}
 
-// EnterMutationRulesApplication is called when production mutationRulesApplication is entered.
-func (s *BaseEvoLangParserListener) EnterMutationRulesApplication(ctx *MutationRulesApplicationContext) {
-}
+// EnterMutationInnerBlock is called when production mutationInnerBlock is entered.
+func (s *BaseEvoLangParserListener) EnterMutationInnerBlock(ctx *MutationInnerBlockContext) {}
 
-// ExitMutationRulesApplication is called when production mutationRulesApplication is exited.
-func (s *BaseEvoLangParserListener) ExitMutationRulesApplication(ctx *MutationRulesApplicationContext) {
-}
+// ExitMutationInnerBlock is called when production mutationInnerBlock is exited.
+func (s *BaseEvoLangParserListener) ExitMutationInnerBlock(ctx *MutationInnerBlockContext) {}
 
-// EnterOrExpression is called when production orExpression is entered.
-func (s *BaseEvoLangParserListener) EnterOrExpression(ctx *OrExpressionContext) {}
+// EnterMiddlewareBlock is called when production middlewareBlock is entered.
+func (s *BaseEvoLangParserListener) EnterMiddlewareBlock(ctx *MiddlewareBlockContext) {}
 
-// ExitOrExpression is called when production orExpression is exited.
-func (s *BaseEvoLangParserListener) ExitOrExpression(ctx *OrExpressionContext) {}
+// ExitMiddlewareBlock is called when production middlewareBlock is exited.
+func (s *BaseEvoLangParserListener) ExitMiddlewareBlock(ctx *MiddlewareBlockContext) {}
 
-// EnterAndExpression is called when production andExpression is entered.
-func (s *BaseEvoLangParserListener) EnterAndExpression(ctx *AndExpressionContext) {}
+// EnterFunctionBlock is called when production functionBlock is entered.
+func (s *BaseEvoLangParserListener) EnterFunctionBlock(ctx *FunctionBlockContext) {}
 
-// ExitAndExpression is called when production andExpression is exited.
-func (s *BaseEvoLangParserListener) ExitAndExpression(ctx *AndExpressionContext) {}
-
-// EnterMutationRulesApplicationExpressionPrimary is called when production mutationRulesApplicationExpressionPrimary is entered.
-func (s *BaseEvoLangParserListener) EnterMutationRulesApplicationExpressionPrimary(ctx *MutationRulesApplicationExpressionPrimaryContext) {
-}
-
-// ExitMutationRulesApplicationExpressionPrimary is called when production mutationRulesApplicationExpressionPrimary is exited.
-func (s *BaseEvoLangParserListener) ExitMutationRulesApplicationExpressionPrimary(ctx *MutationRulesApplicationExpressionPrimaryContext) {
-}
+// ExitFunctionBlock is called when production functionBlock is exited.
+func (s *BaseEvoLangParserListener) ExitFunctionBlock(ctx *FunctionBlockContext) {}
 
 // EnterInputDef is called when production inputDef is entered.
 func (s *BaseEvoLangParserListener) EnterInputDef(ctx *InputDefContext) {}
@@ -273,6 +269,12 @@ func (s *BaseEvoLangParserListener) EnterEventType(ctx *EventTypeContext) {}
 // ExitEventType is called when production eventType is exited.
 func (s *BaseEvoLangParserListener) ExitEventType(ctx *EventTypeContext) {}
 
+// EnterFunctionCallExpr is called when production FunctionCallExpr is entered.
+func (s *BaseEvoLangParserListener) EnterFunctionCallExpr(ctx *FunctionCallExprContext) {}
+
+// ExitFunctionCallExpr is called when production FunctionCallExpr is exited.
+func (s *BaseEvoLangParserListener) ExitFunctionCallExpr(ctx *FunctionCallExprContext) {}
+
 // EnterMulDivExpr is called when production MulDivExpr is entered.
 func (s *BaseEvoLangParserListener) EnterMulDivExpr(ctx *MulDivExprContext) {}
 
@@ -303,12 +305,6 @@ func (s *BaseEvoLangParserListener) EnterIntLiteral(ctx *IntLiteralContext) {}
 // ExitIntLiteral is called when production IntLiteral is exited.
 func (s *BaseEvoLangParserListener) ExitIntLiteral(ctx *IntLiteralContext) {}
 
-// EnterFunctionCall is called when production FunctionCall is entered.
-func (s *BaseEvoLangParserListener) EnterFunctionCall(ctx *FunctionCallContext) {}
-
-// ExitFunctionCall is called when production FunctionCall is exited.
-func (s *BaseEvoLangParserListener) ExitFunctionCall(ctx *FunctionCallContext) {}
-
 // EnterRelationalExpr is called when production RelationalExpr is entered.
 func (s *BaseEvoLangParserListener) EnterRelationalExpr(ctx *RelationalExprContext) {}
 
@@ -321,6 +317,12 @@ func (s *BaseEvoLangParserListener) EnterParenExpr(ctx *ParenExprContext) {}
 // ExitParenExpr is called when production ParenExpr is exited.
 func (s *BaseEvoLangParserListener) ExitParenExpr(ctx *ParenExprContext) {}
 
+// EnterPropertyAccessExpr is called when production PropertyAccessExpr is entered.
+func (s *BaseEvoLangParserListener) EnterPropertyAccessExpr(ctx *PropertyAccessExprContext) {}
+
+// ExitPropertyAccessExpr is called when production PropertyAccessExpr is exited.
+func (s *BaseEvoLangParserListener) ExitPropertyAccessExpr(ctx *PropertyAccessExprContext) {}
+
 // EnterAddSubExpr is called when production AddSubExpr is entered.
 func (s *BaseEvoLangParserListener) EnterAddSubExpr(ctx *AddSubExprContext) {}
 
@@ -332,6 +334,52 @@ func (s *BaseEvoLangParserListener) EnterLogicalExpr(ctx *LogicalExprContext) {}
 
 // ExitLogicalExpr is called when production LogicalExpr is exited.
 func (s *BaseEvoLangParserListener) ExitLogicalExpr(ctx *LogicalExprContext) {}
+
+// EnterMethodCallExpr is called when production MethodCallExpr is entered.
+func (s *BaseEvoLangParserListener) EnterMethodCallExpr(ctx *MethodCallExprContext) {}
+
+// ExitMethodCallExpr is called when production MethodCallExpr is exited.
+func (s *BaseEvoLangParserListener) ExitMethodCallExpr(ctx *MethodCallExprContext) {}
+
+// EnterMethodCallExpression is called when production methodCallExpression is entered.
+func (s *BaseEvoLangParserListener) EnterMethodCallExpression(ctx *MethodCallExpressionContext) {}
+
+// ExitMethodCallExpression is called when production methodCallExpression is exited.
+func (s *BaseEvoLangParserListener) ExitMethodCallExpression(ctx *MethodCallExpressionContext) {}
+
+// EnterSimpleIdExpr is called when production SimpleIdExpr is entered.
+func (s *BaseEvoLangParserListener) EnterSimpleIdExpr(ctx *SimpleIdExprContext) {}
+
+// ExitSimpleIdExpr is called when production SimpleIdExpr is exited.
+func (s *BaseEvoLangParserListener) ExitSimpleIdExpr(ctx *SimpleIdExprContext) {}
+
+// EnterPrimaryFunctionCallExpr is called when production PrimaryFunctionCallExpr is entered.
+func (s *BaseEvoLangParserListener) EnterPrimaryFunctionCallExpr(ctx *PrimaryFunctionCallExprContext) {
+}
+
+// ExitPrimaryFunctionCallExpr is called when production PrimaryFunctionCallExpr is exited.
+func (s *BaseEvoLangParserListener) ExitPrimaryFunctionCallExpr(ctx *PrimaryFunctionCallExprContext) {
+}
+
+// EnterPrimaryPropertyAccessExpr is called when production PrimaryPropertyAccessExpr is entered.
+func (s *BaseEvoLangParserListener) EnterPrimaryPropertyAccessExpr(ctx *PrimaryPropertyAccessExprContext) {
+}
+
+// ExitPrimaryPropertyAccessExpr is called when production PrimaryPropertyAccessExpr is exited.
+func (s *BaseEvoLangParserListener) ExitPrimaryPropertyAccessExpr(ctx *PrimaryPropertyAccessExprContext) {
+}
+
+// EnterPropertyAccess is called when production propertyAccess is entered.
+func (s *BaseEvoLangParserListener) EnterPropertyAccess(ctx *PropertyAccessContext) {}
+
+// ExitPropertyAccess is called when production propertyAccess is exited.
+func (s *BaseEvoLangParserListener) ExitPropertyAccess(ctx *PropertyAccessContext) {}
+
+// EnterFunctionCall is called when production functionCall is entered.
+func (s *BaseEvoLangParserListener) EnterFunctionCall(ctx *FunctionCallContext) {}
+
+// ExitFunctionCall is called when production functionCall is exited.
+func (s *BaseEvoLangParserListener) ExitFunctionCall(ctx *FunctionCallContext) {}
 
 // EnterExprList is called when production exprList is entered.
 func (s *BaseEvoLangParserListener) EnterExprList(ctx *ExprListContext) {}
@@ -368,3 +416,39 @@ func (s *BaseEvoLangParserListener) EnterServerStatement(ctx *ServerStatementCon
 
 // ExitServerStatement is called when production serverStatement is exited.
 func (s *BaseEvoLangParserListener) ExitServerStatement(ctx *ServerStatementContext) {}
+
+// EnterSandboxBlock is called when production sandboxBlock is entered.
+func (s *BaseEvoLangParserListener) EnterSandboxBlock(ctx *SandboxBlockContext) {}
+
+// ExitSandboxBlock is called when production sandboxBlock is exited.
+func (s *BaseEvoLangParserListener) ExitSandboxBlock(ctx *SandboxBlockContext) {}
+
+// EnterSandboxAttributes is called when production sandboxAttributes is entered.
+func (s *BaseEvoLangParserListener) EnterSandboxAttributes(ctx *SandboxAttributesContext) {}
+
+// ExitSandboxAttributes is called when production sandboxAttributes is exited.
+func (s *BaseEvoLangParserListener) ExitSandboxAttributes(ctx *SandboxAttributesContext) {}
+
+// EnterSandboxAttribute is called when production sandboxAttribute is entered.
+func (s *BaseEvoLangParserListener) EnterSandboxAttribute(ctx *SandboxAttributeContext) {}
+
+// ExitSandboxAttribute is called when production sandboxAttribute is exited.
+func (s *BaseEvoLangParserListener) ExitSandboxAttribute(ctx *SandboxAttributeContext) {}
+
+// EnterSandboxLangAttribute is called when production sandboxLangAttribute is entered.
+func (s *BaseEvoLangParserListener) EnterSandboxLangAttribute(ctx *SandboxLangAttributeContext) {}
+
+// ExitSandboxLangAttribute is called when production sandboxLangAttribute is exited.
+func (s *BaseEvoLangParserListener) ExitSandboxLangAttribute(ctx *SandboxLangAttributeContext) {}
+
+// EnterSandboxDefineAttribute is called when production sandboxDefineAttribute is entered.
+func (s *BaseEvoLangParserListener) EnterSandboxDefineAttribute(ctx *SandboxDefineAttributeContext) {}
+
+// ExitSandboxDefineAttribute is called when production sandboxDefineAttribute is exited.
+func (s *BaseEvoLangParserListener) ExitSandboxDefineAttribute(ctx *SandboxDefineAttributeContext) {}
+
+// EnterSandboxDefineContent is called when production sandboxDefineContent is entered.
+func (s *BaseEvoLangParserListener) EnterSandboxDefineContent(ctx *SandboxDefineContentContext) {}
+
+// ExitSandboxDefineContent is called when production sandboxDefineContent is exited.
+func (s *BaseEvoLangParserListener) ExitSandboxDefineContent(ctx *SandboxDefineContentContext) {}

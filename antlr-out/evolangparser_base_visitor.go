@@ -48,6 +48,10 @@ func (v *BaseEvoLangParserVisitor) VisitFunctionBody(ctx *FunctionBodyContext) i
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseEvoLangParserVisitor) VisitAssignmentStatement(ctx *AssignmentStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseEvoLangParserVisitor) VisitConditionalStatement(ctx *ConditionalStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -88,23 +92,19 @@ func (v *BaseEvoLangParserVisitor) VisitMutationStatement(ctx *MutationStatement
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseEvoLangParserVisitor) VisitMutationDetails(ctx *MutationDetailsContext) interface{} {
+func (v *BaseEvoLangParserVisitor) VisitMutationParameters(ctx *MutationParametersContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseEvoLangParserVisitor) VisitMutationRulesApplication(ctx *MutationRulesApplicationContext) interface{} {
+func (v *BaseEvoLangParserVisitor) VisitMutationInnerBlock(ctx *MutationInnerBlockContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseEvoLangParserVisitor) VisitOrExpression(ctx *OrExpressionContext) interface{} {
+func (v *BaseEvoLangParserVisitor) VisitMiddlewareBlock(ctx *MiddlewareBlockContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseEvoLangParserVisitor) VisitAndExpression(ctx *AndExpressionContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseEvoLangParserVisitor) VisitMutationRulesApplicationExpressionPrimary(ctx *MutationRulesApplicationExpressionPrimaryContext) interface{} {
+func (v *BaseEvoLangParserVisitor) VisitFunctionBlock(ctx *FunctionBlockContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -172,6 +172,10 @@ func (v *BaseEvoLangParserVisitor) VisitEventType(ctx *EventTypeContext) interfa
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseEvoLangParserVisitor) VisitFunctionCallExpr(ctx *FunctionCallExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseEvoLangParserVisitor) VisitMulDivExpr(ctx *MulDivExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -192,10 +196,6 @@ func (v *BaseEvoLangParserVisitor) VisitIntLiteral(ctx *IntLiteralContext) inter
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseEvoLangParserVisitor) VisitFunctionCall(ctx *FunctionCallContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
 func (v *BaseEvoLangParserVisitor) VisitRelationalExpr(ctx *RelationalExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -204,11 +204,43 @@ func (v *BaseEvoLangParserVisitor) VisitParenExpr(ctx *ParenExprContext) interfa
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseEvoLangParserVisitor) VisitPropertyAccessExpr(ctx *PropertyAccessExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseEvoLangParserVisitor) VisitAddSubExpr(ctx *AddSubExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
 func (v *BaseEvoLangParserVisitor) VisitLogicalExpr(ctx *LogicalExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitMethodCallExpr(ctx *MethodCallExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitMethodCallExpression(ctx *MethodCallExpressionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitSimpleIdExpr(ctx *SimpleIdExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitPrimaryFunctionCallExpr(ctx *PrimaryFunctionCallExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitPrimaryPropertyAccessExpr(ctx *PrimaryPropertyAccessExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitPropertyAccess(ctx *PropertyAccessContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitFunctionCall(ctx *FunctionCallContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -233,5 +265,29 @@ func (v *BaseEvoLangParserVisitor) VisitPrintStatement(ctx *PrintStatementContex
 }
 
 func (v *BaseEvoLangParserVisitor) VisitServerStatement(ctx *ServerStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitSandboxBlock(ctx *SandboxBlockContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitSandboxAttributes(ctx *SandboxAttributesContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitSandboxAttribute(ctx *SandboxAttributeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitSandboxLangAttribute(ctx *SandboxLangAttributeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitSandboxDefineAttribute(ctx *SandboxDefineAttributeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseEvoLangParserVisitor) VisitSandboxDefineContent(ctx *SandboxDefineContentContext) interface{} {
 	return v.VisitChildren(ctx)
 }

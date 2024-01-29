@@ -38,6 +38,9 @@ type EvoLangParserVisitor interface {
 	// Visit a parse tree produced by EvoLangParser#functionBody.
 	VisitFunctionBody(ctx *FunctionBodyContext) interface{}
 
+	// Visit a parse tree produced by EvoLangParser#assignmentStatement.
+	VisitAssignmentStatement(ctx *AssignmentStatementContext) interface{}
+
 	// Visit a parse tree produced by EvoLangParser#conditionalStatement.
 	VisitConditionalStatement(ctx *ConditionalStatementContext) interface{}
 
@@ -68,20 +71,17 @@ type EvoLangParserVisitor interface {
 	// Visit a parse tree produced by EvoLangParser#mutationStatement.
 	VisitMutationStatement(ctx *MutationStatementContext) interface{}
 
-	// Visit a parse tree produced by EvoLangParser#mutationDetails.
-	VisitMutationDetails(ctx *MutationDetailsContext) interface{}
+	// Visit a parse tree produced by EvoLangParser#mutationParameters.
+	VisitMutationParameters(ctx *MutationParametersContext) interface{}
 
-	// Visit a parse tree produced by EvoLangParser#mutationRulesApplication.
-	VisitMutationRulesApplication(ctx *MutationRulesApplicationContext) interface{}
+	// Visit a parse tree produced by EvoLangParser#mutationInnerBlock.
+	VisitMutationInnerBlock(ctx *MutationInnerBlockContext) interface{}
 
-	// Visit a parse tree produced by EvoLangParser#orExpression.
-	VisitOrExpression(ctx *OrExpressionContext) interface{}
+	// Visit a parse tree produced by EvoLangParser#middlewareBlock.
+	VisitMiddlewareBlock(ctx *MiddlewareBlockContext) interface{}
 
-	// Visit a parse tree produced by EvoLangParser#andExpression.
-	VisitAndExpression(ctx *AndExpressionContext) interface{}
-
-	// Visit a parse tree produced by EvoLangParser#mutationRulesApplicationExpressionPrimary.
-	VisitMutationRulesApplicationExpressionPrimary(ctx *MutationRulesApplicationExpressionPrimaryContext) interface{}
+	// Visit a parse tree produced by EvoLangParser#functionBlock.
+	VisitFunctionBlock(ctx *FunctionBlockContext) interface{}
 
 	// Visit a parse tree produced by EvoLangParser#inputDef.
 	VisitInputDef(ctx *InputDefContext) interface{}
@@ -131,6 +131,9 @@ type EvoLangParserVisitor interface {
 	// Visit a parse tree produced by EvoLangParser#eventType.
 	VisitEventType(ctx *EventTypeContext) interface{}
 
+	// Visit a parse tree produced by EvoLangParser#FunctionCallExpr.
+	VisitFunctionCallExpr(ctx *FunctionCallExprContext) interface{}
+
 	// Visit a parse tree produced by EvoLangParser#MulDivExpr.
 	VisitMulDivExpr(ctx *MulDivExprContext) interface{}
 
@@ -146,20 +149,41 @@ type EvoLangParserVisitor interface {
 	// Visit a parse tree produced by EvoLangParser#IntLiteral.
 	VisitIntLiteral(ctx *IntLiteralContext) interface{}
 
-	// Visit a parse tree produced by EvoLangParser#FunctionCall.
-	VisitFunctionCall(ctx *FunctionCallContext) interface{}
-
 	// Visit a parse tree produced by EvoLangParser#RelationalExpr.
 	VisitRelationalExpr(ctx *RelationalExprContext) interface{}
 
 	// Visit a parse tree produced by EvoLangParser#ParenExpr.
 	VisitParenExpr(ctx *ParenExprContext) interface{}
 
+	// Visit a parse tree produced by EvoLangParser#PropertyAccessExpr.
+	VisitPropertyAccessExpr(ctx *PropertyAccessExprContext) interface{}
+
 	// Visit a parse tree produced by EvoLangParser#AddSubExpr.
 	VisitAddSubExpr(ctx *AddSubExprContext) interface{}
 
 	// Visit a parse tree produced by EvoLangParser#LogicalExpr.
 	VisitLogicalExpr(ctx *LogicalExprContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#MethodCallExpr.
+	VisitMethodCallExpr(ctx *MethodCallExprContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#methodCallExpression.
+	VisitMethodCallExpression(ctx *MethodCallExpressionContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#SimpleIdExpr.
+	VisitSimpleIdExpr(ctx *SimpleIdExprContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#PrimaryFunctionCallExpr.
+	VisitPrimaryFunctionCallExpr(ctx *PrimaryFunctionCallExprContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#PrimaryPropertyAccessExpr.
+	VisitPrimaryPropertyAccessExpr(ctx *PrimaryPropertyAccessExprContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#propertyAccess.
+	VisitPropertyAccess(ctx *PropertyAccessContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#functionCall.
+	VisitFunctionCall(ctx *FunctionCallContext) interface{}
 
 	// Visit a parse tree produced by EvoLangParser#exprList.
 	VisitExprList(ctx *ExprListContext) interface{}
@@ -178,4 +202,22 @@ type EvoLangParserVisitor interface {
 
 	// Visit a parse tree produced by EvoLangParser#serverStatement.
 	VisitServerStatement(ctx *ServerStatementContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#sandboxBlock.
+	VisitSandboxBlock(ctx *SandboxBlockContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#sandboxAttributes.
+	VisitSandboxAttributes(ctx *SandboxAttributesContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#sandboxAttribute.
+	VisitSandboxAttribute(ctx *SandboxAttributeContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#sandboxLangAttribute.
+	VisitSandboxLangAttribute(ctx *SandboxLangAttributeContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#sandboxDefineAttribute.
+	VisitSandboxDefineAttribute(ctx *SandboxDefineAttributeContext) interface{}
+
+	// Visit a parse tree produced by EvoLangParser#sandboxDefineContent.
+	VisitSandboxDefineContent(ctx *SandboxDefineContentContext) interface{}
 }

@@ -43,22 +43,25 @@ rule {
 }
 
 mutation {
-  AddItem {
-    Input: TodoListAddItemInput
-    Rules: (
-      isCallerTodoListCreator || isCallerTodoListAdmin
-    )
+  AddItem: (caller Caller, newItem TodoListAddItemInput) {
+    Middleware: {
+      list = newItem.TodoListId.ResolveModel()
+      isCreator = Rule.isCallerTodoListCreator(caller, list)
+      isAdmin = Rule.isCallerTodoListAdmin(caller, list)
+
+      return isCreator || isAdmin
+    }
     Function: {
-      [sandbox lang="go"]
+      [sandbox lang="go" define={ newItem }]
         // TODO: add some way to inject values into the sandbox
-        fmt.Printf("Adding item to list with id %v: %+v", .TodoListId, .TodoListItem)
+        fmt.Printf("Adding item to list with id %v: %+v", newItem.TodoListId, newItem.TodoListItem)
       [/sandbox]
     }
   }
 }
 
 input TodoListAddItemInput {
-  TodoListId: Int @key
+  TodoListId: Int @references(TodoList.ListId)
   TodoListItem: TodoListItemInput
 }
 
