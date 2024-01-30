@@ -41,44 +41,83 @@ func (v *EvoLangVisitor) VisitProg(ctx *parser.ProgContext) interface{} {
 func (v *EvoLangVisitor) VisitStatement(ctx *parser.StatementContext) interface{} {
 	var goCode string
 
-	// Delegate to the appropriate visitor method based on the statement type
-	if ctx.ModelDef() != nil {
-		modelDefCtx := ctx.ModelDef().(*parser.ModelDefContext) // Type assertion
+	switch {
+	case ctx.ModelDef() != nil:
+		modelDefCtx := ctx.ModelDef().(*parser.ModelDefContext)
 		goCode = v.VisitModelDef(modelDefCtx).(string)
-	} else if ctx.EnumDef() != nil {
-		enumDefCtx := ctx.EnumDef().(*parser.EnumDefContext) // Type assertion
+	case ctx.EnumDef() != nil:
+		enumDefCtx := ctx.EnumDef().(*parser.EnumDefContext)
 		goCode = v.VisitEnumDef(enumDefCtx).(string)
-	} else if ctx.MainFunction() != nil {
-		mainFunctionCtx := ctx.MainFunction().(*parser.MainFunctionContext) // Type assertion
+	case ctx.RuleDef() != nil:
+		ruleDefCtx := ctx.RuleDef().(*parser.RuleDefContext)
+		ruleDefGoCode := v.VisitRuleDef(ruleDefCtx)
+		if ruleDefGoCode == nil {
+			goCode = "RULEDEF: UNIMPLEMENTED"
+		} else {
+			goCode = ruleDefGoCode.(string)
+		}
+	case ctx.MutationDef() != nil:
+		mutationDefCtx := ctx.MutationDef().(*parser.MutationDefContext)
+		mutationDefGoCode := v.VisitMutationDef(mutationDefCtx)
+		if mutationDefGoCode == nil {
+			goCode = "MUTATIONDEF: UNIMPLEMENTED"
+		} else {
+			goCode = mutationDefGoCode.(string)
+		}
+	case ctx.InputDef() != nil:
+		inputDefCtx := ctx.InputDef().(*parser.InputDefContext)
+		inputDefGoCode := v.VisitInputDef(inputDefCtx)
+		if inputDefGoCode == nil {
+			goCode = "INPUTDEF: UNIMPLEMENTED"
+		} else {
+			goCode = inputDefGoCode.(string)
+		}
+	case ctx.MainFunction() != nil:
+		mainFunctionCtx := ctx.MainFunction().(*parser.MainFunctionContext)
 		goCode = v.VisitMainFunction(mainFunctionCtx).(string)
 	}
 
-	// Return the generated Go code for the statement
 	return goCode
 }
 
 func (v *EvoLangVisitor) VisitModelBody(ctx *parser.ModelBodyContext) interface{} {
 	var goCode string
 	for _, child := range ctx.GetChildren() {
-		// Depending on the structure of a model body in your DSL,
-		// delegate to the appropriate visitor methods.
-		if fieldCtx, ok := child.(*parser.ModelFieldDefContext); ok {
-			goCode += v.VisitModelFieldDef(fieldCtx).(string) + "\n"
-		} else if eventCtx, ok := child.(*parser.EventDefContext); ok {
-			goCode += v.VisitEventDef(eventCtx).(string) + "\n"
+		switch c := child.(type) {
+		case *parser.ModelFieldDefContext:
+			goCode += v.VisitModelFieldDef(c).(string) + "\n"
+		case *parser.EventDefContext:
+			goCode += v.VisitEventDef(c).(string) + "\n"
+			// Add cases for other possible child types
 		}
-		// ... handle other constructs within a model body ...
 	}
 	return goCode
 }
 
 func (v *EvoLangVisitor) VisitModelFieldDef(ctx *parser.ModelFieldDefContext) interface{} {
-	// Example: Check if the type of the field is valid
+	fieldName := ctx.ID().GetText()
 	fieldType := ctx.TypeDef().GetText()
+
 	if !isValidType(fieldType) {
 		log.Fatalf("Invalid type: %s", fieldType)
 	}
-	return v.VisitChildren(ctx)
+
+	return fieldName + " " + goType(fieldType)
+}
+
+// Helper function to convert EvoLang types to Go types
+func goType(t string) string {
+	switch t {
+	case "Int":
+		return "int"
+	case "String":
+		return "string"
+	case "Boolean":
+		return "bool"
+	// Add other type conversions as necessary
+	default:
+		return "interface{}" // or any default type
+	}
 }
 
 // Helper function to validate types
